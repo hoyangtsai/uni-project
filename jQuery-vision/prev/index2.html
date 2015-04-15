@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="css/style4.css" />
+    <script src="js/modernizr.custom.63321.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header class="clearfix">
+            <h1>
+                Sense, Quanlity, Valuable from my sight.
+            </h1>
+        </header>
+        
+        <section class="main clearfix">
+            <div class="fleft">
+                <select id="cd-dropdown" class="cd-select" onchange="callSite(this)">
+                    <option value="-1" selected>Choose a category 選擇類型</option>
+                    <option value="www.google.com" class="icon-google-plus">Shirts 衣服</option>
+                    <option value="tw.yahoo.com" class="icon-facebook">Shoes 鞋子</option>
+                    <option value="3" class="icon-twitter">Pants 褲子</option>
+                    <option value="4" class="icon-github">Bags 包包</option>
+                </select>
+            </div>
+        </section>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.dropdown.js"></script>
+        <script type="text/javascript">
+                $( function() {
+                   $( '#cd-dropdown' ).dropdown();
+    
+                });
+        </script>
+        <script type="text/javascript"> 
+            function callSite(obj) { 
+                window.open("http://" + obj.options[obj.selectedIndex].value); 
+            } 
+        </script> 
+    </div>
+</body>
+</html>

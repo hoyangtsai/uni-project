@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Javascript - Sum-up Values</title>
+	<link rel="stylesheet" type="text/css" href="../css/reset.css" />
+	<style type="text/css">
+	.container{
+	    position:relative;
+	}
+	.clr{
+	    clear: both;
+	}
+	.content {
+		margin-top: 20px;
+		margin-left:auto;
+		margin-right:auto;
+	    width: 50%;
+	}
+	/* Header Style */
+	.header{
+	    font-family:'Arial Narrow', Arial, sans-serif;
+	    line-height: 24px;
+	    font-size: 11px;
+	    background: #000;
+	    opacity: 0.9;
+	    text-transform: uppercase;
+	    z-index: 9999;
+	    position: relative;
+	    -moz-box-shadow: 1px 0px 2px #000;
+	    -webkit-box-shadow: 1px 0px 2px #000;
+	    box-shadow: 1px 0px 2px #000;
+	}
+	.header a{
+	    padding: 0px 10px;
+	    letter-spacing: 1px;
+	    color: #ddd;
+	    display: block;
+	    float: left;
+	}
+	.header a:hover{
+	    color: #fff;
+	}
+	.header span.right{
+	    float: right;
+	}
+	.header span.right a{
+	    float: none;
+	    display: inline;
+	}
+	</style>
+</head>
+
+<body>
+
+<script language="JavaScript" type="text/javascript">
+function sumupBudget() {
+    //alert("Sum up Budget Start");
+	var projStageBudg = document.getElementById('projectStageBudget').value;
+    if (projStageBudg=="") {
+        projStageBudg = 0;
+    }
+    var designStageBudg = document.getElementById('designStageBudget').value;
+    if (designStageBudg=="") {
+        designStageBudg = 0;
+    }
+    var testStageBudg = document.getElementById('testStageBudget').value;
+    if (testStageBudg=="") {
+        testStageBudg = 0;
+    }
+    var trialStageBudg = document.getElementById('trialRunStageBudget').value;
+    if (trialStageBudg=="") {
+        trialStageBudg = 0;
+    }
+    
+    if(isNaN(projStageBudg)) {
+        alert("輸入預算金額:企劃階段 不是數字");
+    } else if(isNaN(designStageBudg)) {
+        alert("輸入預算金額:設計階段 不是數字");
+    } else if(isNaN(testStageBudg)) {
+        alert("輸入預算金額:試作階段 不是數字");
+    } else if(isNaN(trialStageBudg)) {
+        alert("輸入預算金額:試產階段 不是數字");
+    } else {
+        var sum = parseInt(projStageBudg) + parseInt(designStageBudg)
+            + parseInt(testStageBudg) + parseInt(trialStageBudg);
+        if(!isNaN(sum)) {
+            document.getElementById('allBudget').value=sum;
+        }
+    }
+}
+
+</script>
+
+	<div class="container">
+		<div class="header">
+                <a href="../index.html"><strong>&laquo; Back to Main Menu</strong></a>
+                <span class="right">
+                </span>
+                <div class="clr"></div>
+        </div>
+		<div class="content">
+			輸入預算金額:企劃階段: <input id="projectStageBudget" type="text" onChange="sumupBudget()"/><br>
+			輸入預算金額:設計階段: <input id="designStageBudget" type="text" onChange="sumupBudget()"/><br>
+			輸入預算金額:試作階段: <input id="testStageBudget" type="text" onChange="sumupBudget()"/><br>
+			輸入預算金額:試產階段: <input id="trialRunStageBudget" type="text" onChange="sumupBudget()"/><br>
+			輸入預算金額:總計: <input id="allBudget" type="text" /><br>
+		</div>
+	</div>
+
+</body>
+</html>

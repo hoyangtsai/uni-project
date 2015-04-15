@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Javascript - 3D Dynamic Menu</title>
+	<link rel="stylesheet" type="text/css" href="../css/reset.css" />
+	<style type="text/css">
+	.container{
+	    position:relative;
+	}
+	.clr{
+	    clear: both;
+	}
+	.content {
+		margin-top: 20px;
+		margin-left:auto;
+		margin-right:auto;
+	    width: 50%;
+	}
+	/* Header Style */
+	.header{
+	    font-family:'Arial Narrow', Arial, sans-serif;
+	    line-height: 24px;
+	    font-size: 11px;
+	    background: #000;
+	    opacity: 0.9;
+	    text-transform: uppercase;
+	    z-index: 9999;
+	    position: relative;
+	    -moz-box-shadow: 1px 0px 2px #000;
+	    -webkit-box-shadow: 1px 0px 2px #000;
+	    box-shadow: 1px 0px 2px #000;
+	}
+	.header a{
+	    padding: 0px 10px;
+	    letter-spacing: 1px;
+	    color: #ddd;
+	    display: block;
+	    float: left;
+	}
+	.header a:hover{
+	    color: #fff;
+	}
+	.header span.right{
+	    float: right;
+	}
+	.header span.right a{
+	    float: none;
+	    display: inline;
+	}
+	</style>
+
+<script language="JavaScript" type="text/javascript">
+function checkText1() {
+	var text1 = document.getElementById("text1");
+	var t1Value = text1.value;
+	//alert(t1Value);
+	if(t1Value != "A" && t1Value != "B" && t1Value != "C") {
+		var answer = confirm("輸入的值不符合條件，是否繼續輸入");
+		if(answer)
+		text1.value="";
+	} 
+}
+function getOptions() {
+	var select1id = document.getElementById("select1Id");
+	var select1Idx = select1id.selectedIndex;
+	
+	addSelect2(select1Idx);
+}
+function addSelect2(selectIdx) {
+	var select2Id = document.getElementById("select2Id");
+	select2Id.length = 0;
+	
+	var select2 = new Array();
+	select2[0] = new Array();
+	select2[0][0]="iPhone 4";
+	select2[0][1]="iPhone 4s";
+	select2[1]=new Array();
+	select2[1][0]="iPad2";
+	select2[1][1]="The New iPad";
+	select2[2]=new Array();
+	select2[2][0]="iMac";
+	select2[2][1]="iMac Mini"
+	
+	for(var i = 0; i < select2[selectIdx].length; i++) {
+			var option = new Option(select2[selectIdx][i]);
+			select2Id.options.add(option);
+	}
+	
+}
+function getPrice() {
+	var select2Id = document.getElementById("select2Id");
+	var select2Idx = select2Id.selectedIndex;
+	
+	var select1Id = document.getElementById("select1Id");
+	var select1Idx = select1Id.selectedIndex;
+	
+	addPrice(select1Idx, select2Idx);
+}
+function addPrice(s1idx, s2idx) {
+	var priceId = document.getElementById("priceId");
+	priceId.value = "";
+	//alert(s1idx+" , "+s2idx);
+	
+	var priceArr = new Array();
+	priceArr[0] = new Array();
+	priceArr[0][0] = new Array();
+	priceArr[0][0][0]="18000";
+	priceArr[0][1] = new Array();
+	priceArr[0][1][0]="23000";
+	priceArr[1] = new Array();
+	priceArr[1][0]=new Array();
+	priceArr[1][0][0]="13000";
+	priceArr[1][1]=new Array();
+	priceArr[1][1][0]="19000";
+	priceArr[2] = new Array();
+	priceArr[2][0]=new Array();
+	priceArr[2][0][0]="30000";
+	priceArr[2][1]=new Array();
+	priceArr[2][1][0]="19000"
+	
+	//alert(priceArr[s1idx][s2idx].length);
+	for(var i = 0; i < priceArr[s1idx][s2idx].length; i++) {
+		priceId.value = priceArr[s1idx][s2idx][i];
+				
+	}
+}
+</script>
+
+</head>
+
+<body onload="getOptions()">
+
+
+	<div class="container">
+		<div class="header">
+                <a href="../index.html"><strong>&laquo; Back to Main Menu</strong></a>
+                <span class="right">
+                </span>
+                <div class="clr"></div>
+        </div>
+		<div class="content">
+			<label>Series: </label>
+			<select name="select1" id="select1Id" onChange="getOptions()">
+			<option value="A">iPhone</option>
+			<option value="B">iPad</option>
+			<option value="C">iMac</option>
+			</select><br />
+
+			<label>Model: </label>
+			<select size="5" name="select2" id="select2Id" onChange="getPrice()">
+			</select><br />
+
+			<label>Price: </label>
+			<input type="number" id="priceId" />
+		</div>
+	</div>
+
+</body>
+</html>

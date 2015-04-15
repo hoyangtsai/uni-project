@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Javascript - 2D Dynamic Dropdown Menu</title>
+	<link rel="stylesheet" type="text/css" href="../css/reset.css" />
+	<style type="text/css">
+	.container{
+	    position:relative;
+	}
+	.clr{
+	    clear: both;
+	}
+	.content {
+		margin-top: 20px;
+		margin-left:auto;
+		margin-right:auto;
+	    width: 50%;
+	}
+	/* Header Style */
+	.header{
+	    font-family:'Arial Narrow', Arial, sans-serif;
+	    line-height: 24px;
+	    font-size: 11px;
+	    background: #000;
+	    opacity: 0.9;
+	    text-transform: uppercase;
+	    z-index: 9999;
+	    position: relative;
+	    -moz-box-shadow: 1px 0px 2px #000;
+	    -webkit-box-shadow: 1px 0px 2px #000;
+	    box-shadow: 1px 0px 2px #000;
+	}
+	.header a{
+	    padding: 0px 10px;
+	    letter-spacing: 1px;
+	    color: #ddd;
+	    display: block;
+	    float: left;
+	}
+	.header a:hover{
+	    color: #fff;
+	}
+	.header span.right{
+	    float: right;
+	}
+	.header span.right a{
+	    float: none;
+	    display: inline;
+	}
+	</style>
+
+<script language="JavaScript" type="text/javascript">
+function getOptions() {
+	var selectAid = document.getElementById("Aid");
+	var selectAIdx = selectAid.selectedIndex;
+	
+	addSelectB(selectAIdx);
+	//var optionA = selectA.options[selectA.selectedIndex];
+	//alert(optionA.value);
+}
+
+function addSelectB (selectAIdx) {
+	var selectBid = document.getElementById("Bid");
+	selectBid.length = 0;
+	var selectB = new Array();
+	selectB[0] = new Array();
+	selectB[0][0]="A";
+	selectB[0][1]="B";
+	selectB[0][2]="C";
+	selectB[1]=new Array();
+	selectB[1][0]="D";
+	selectB[1][1]="E";
+	selectB[1][2]="F";
+	selectB[2]=new Array();
+	selectB[2][0]="X";
+	selectB[2][1]="Y"
+	selectB[2][2]="Z"
+	
+	for(var i = 0; i < selectB[selectAIdx].length; i++) {
+			var option = new Option(selectB[selectAIdx][i]);
+			selectBid.options.add(option);
+	}
+}
+</script>
+
+</head>
+
+<body onload="getOptions()">
+
+
+	<div class="container">
+		<div class="header">
+                <a href="../index.html"><strong>&laquo; Back to Main Menu</strong></a>
+                <span class="right">
+                </span>
+                <div class="clr"></div>
+        </div>
+		<div class="content">
+			<p>Choose Option:</p>
+			<br>
+			<label>A:</label>
+			<select name="A" id="Aid" onchange="getOptions()">
+			<option value="1" selected="selected">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			</select> 
+			   
+			<label>B:</label>
+			<select name="B" id="Bid"></select>
+		</div>
+	</div>
+
+</body>
+</html>
