@@ -55,7 +55,7 @@
 	<td colspan=2 align="right">
     <input type="hidden" name="aid" value="{$article.aid}">
     <input type="submit" value="Update">
-    </td>
+  </td>
 </tr>
 </table>
 </form>

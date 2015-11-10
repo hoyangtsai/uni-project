@@ -71,8 +71,9 @@ function login($username, $password) {
 }
 
 function create_blog($title, $summary, $username, $date) {
-	if (empty($title))
+	if (trim($title) == '') {
 		return false;
+    }
 
 	$title = mysql_escape_string(stripslashes($title));
 	$summary = mysql_escape_string(stripslashes($summary));
@@ -91,8 +92,9 @@ function create_blog($title, $summary, $username, $date) {
 }
 
 function add_comment($title, $body, $date, $aid, $uid) {
-	if (empty($body))
+	if ($body == '' || !isset($body)) {
 		return false;
+    }
 
 	$title = mysql_escape_string(stripslashes($title));
 	$body = mysql_escape_string(stripslashes($body));
@@ -166,8 +168,10 @@ function get_commenter($uid) {
 
 //Add a new article
 function add_article($headline, $author, $body, $date, $bid, $uid, $pid, $tags) {
-	if  (empty($headline) || empty($body))
+	if ($headline == '' || !isset($headline) ||
+        $body == '' || !isset($body)) {
 		return false;
+    }
 
 	$headline = mysql_escape_string(stripslashes($headline));
 	$author = mysql_escape_string(stripslashes($author));
@@ -223,7 +227,7 @@ function add_tags($aid, $tags, $connection) {
 
 	$tags = mysql_escape_string(stripslashes($tags));
 
-	 if (empty($tags)) return;
+	 if (trim($tags) == '') return;
 
 	$tags = trim($tags);
 	$tags = preg_split("/[\s]*[,][\s]*/", $tags, -1, PREG_SPLIT_NO_EMPTY);
@@ -408,7 +412,7 @@ function search_articles($string) {
 
 	$query = "SELECT * FROM blog_articles ";
 
-	if (! empty($string)) {
+	if (trim($string) != '') {
 		$string = mysql_escape_string(stripslashes($string));
 		$query .= "WHERE headline LIKE '%$string%' OR article_body LIKE '%$string%' ";
   	}
@@ -460,9 +464,10 @@ function get_blog($bid) {
 
 //Edit an article by a defined article id
 function edit_article($aid, $headline, $body, $pid, $tags) {
-	if (empty($headline) || empty($body))
-		return false;
-
+    if ($headline == '' || !isset($headline) ||
+        $body == '' || !isset($body)) {
+        return false;
+    }
 	$headline = mysql_escape_string(stripslashes($headline));
 	$body = mysql_escape_string(stripslashes($body));
 
@@ -492,8 +497,9 @@ function edit_article($aid, $headline, $body, $pid, $tags) {
 
 //Edit a blog from a given blog id
 function edit_blog($title, $summary, $bid) {
-	if (empty($title))
+	if (trim($title) == '') {
 		return false;
+    }
 
 	$title = mysql_escape_string(stripslashes($title));
 	$summary = mysql_escape_string(stripslashes($summary));
