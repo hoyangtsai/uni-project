@@ -8,12 +8,12 @@ if ($action == "create_blog") {
 	$summary = $_POST['summary'];
 	$username = $_POST['username'];
 	$date = time();
-
+	
 	if (! create_blog($title, $summary, $username, $date)) {
 		$error_msg = "Title cannot be empty.";
 		header("Location: create_blog.php?error_msg=$error_msg");
-		exit;
-	}
+		exit;	
+	} 
 }
 
 if ($action == "post") {
@@ -25,16 +25,13 @@ if ($action == "post") {
 	$uid = $_POST['uid'];
 	$tags = $_POST['tags'];
 	$pid = $_POST['pid'];
-	if ($pid === '' || !isset($pid)) {
-		$pid = 0;
-	}
-
+	
 	//check if they are empty, show error message and do not proceed ahead
 	if  (! add_article($headline, $author, $body, $date, $bid, $uid, $pid, $tags)) {
 		$error_msg = "Headline and Content are required.";
 		header("Location: post.php?error_msg=$error_msg");
-		exit;
-	}
+		exit;	
+	} 
 }
 
 if ($action == "edit") {
@@ -44,16 +41,13 @@ if ($action == "edit") {
 	$tags = $_POST['tags'];
 	$date = time();
 	$pid = $_POST['pid'];
-	if ($pid === '' || !isset($pid)) {
-		$pid = 0;
-	}
-
+	
 	//check if they are empty, show error message and do not proceed ahead
 	if  (! edit_article($aid, $headline, $body, $pid, $tags)) {
 		$error_msg = "Headline and Content cannot be empty.";
 		header("Location: edit.php?aid=$aid&error_msg=$error_msg");
-		exit;
-	}
+		exit;	
+	} 
 }
 
 if ($action == "edit_blog") {
@@ -61,7 +55,7 @@ if ($action == "edit_blog") {
     $title = $_POST['title'];
 	$summary = $_POST['summary'];
 	$date = time();
-
+	
 	if (! edit_blog($title, $summary, $bid)) {
 		$error_msg = "Title cannot be empty.";
 		header("Location: edit_blog.php?bid=$bid&error_msg=$error_msg");
@@ -72,7 +66,7 @@ if ($action == "edit_blog") {
 if ($action == "upload_photo") {
 	$image = $_FILES['imagefile'];
 	$uid = $_POST['uid'];
-
+		
 	if (! addImage($image, $uid)) {
 		$error_msg = "No photo selected.";
 		header("Location: upload_photo.php?error_msg=$error_msg");
