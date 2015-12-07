@@ -24,9 +24,9 @@ if ($action == "post") {
 	$bid = $_POST['bid'];
 	$uid = $_POST['uid'];
 	$tags = $_POST['tags'];
-	$pid = 0;
-	if ($pid != '' && isset($pid)) {
-		$pid = $_POST['pid'];
+	$pid = $_POST['pid'];
+	if ($pid === '' || !isset($pid)) {
+		$pid = 0;
 	}
 
 	//check if they are empty, show error message and do not proceed ahead
@@ -43,9 +43,9 @@ if ($action == "edit") {
 	$body = $_POST['body'];
 	$tags = $_POST['tags'];
 	$date = time();
-	$pid = 0;
-	if ($pid != '' && isset($pid)) {
-		$pid = $_POST['pid'];
+	$pid = $_POST['pid'];
+	if ($pid === '' || !isset($pid)) {
+		$pid = 0;
 	}
 
 	//check if they are empty, show error message and do not proceed ahead
